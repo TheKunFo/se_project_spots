@@ -1,12 +1,9 @@
-.card {
-  width: 413px;
-}
-
 .card__image {
   height: 413px;
-  width: 413px;
+  width: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 8px;
 }
 
 .card__content {
@@ -22,4 +19,19 @@
   border: none;
   background-color: transparent;
   opacity: 40%;
+}
+
+.card__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+@media screen and (max-width: 627px) {
+  .card__image {
+    height: 288px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
