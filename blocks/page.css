@@ -1,7 +1,6 @@
 .page {
   max-width: 1440px;
   margin: 0 auto;
-
   background-color: #fcf5e5;
   min-height: 100vh;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
@@ -9,9 +8,5 @@
 
 .page__section {
   max-width: 1280px;
-  margin-left: 0 auto;
-}
-
-button:hover {
-  color: blue;
+  margin: 0 auto;
 }
