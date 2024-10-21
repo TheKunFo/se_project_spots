@@ -99,7 +99,7 @@
   }
 
   .profile__description {
-    font-size: 20px;
+    font-size: 16px;
     margin: 0 0 32px;
   }
 
@@ -119,5 +119,6 @@
   }
   .profile__edit-btn {
     margin: auto;
+    font-size: 16px;
   }
 }
