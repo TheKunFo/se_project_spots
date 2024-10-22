@@ -11,6 +11,7 @@
   width: 190px;
   margin-right: 20px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .profile__column {
@@ -83,7 +84,7 @@
     min-width: 288px;
     align-items: center;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 0;
   }
 
   .profile__name {
