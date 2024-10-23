@@ -20,7 +20,7 @@ This webpage is deployed to GitHub Pages
 - https://thekunfo.github.io/se_project_spots/
 
 Videos Link
-
+https://www.loom.com/share/ee7010e18714408194f5b0e29911ca5e?sid=75e987cc-516c-4bd2-ae80-923198a1de52
 
   
 Good luck and have fun!
