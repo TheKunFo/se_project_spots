@@ -53,14 +53,12 @@
   margin-bottom: 32px;
   font-size: 16px;
   line-height: 17.6px;
-  opacity: 70%;
 }
 
 .modal__input {
   border-radius: 8px;
   border: 1px #212121 solid;
   padding: 16px 12px;
-  opacity: 40%;
 }
 
 .modal__submit-btn {
