@@ -70,6 +70,10 @@
   cursor: pointer;
 }
 
+.profile__add-img {
+  margin-right: 5px;
+}
+
 .profile__add-btn:hover {
   opacity: 0.8;
 }
