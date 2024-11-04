@@ -66,15 +66,14 @@
   margin-top: auto;
   border: none;
   border-radius: 8px;
-  cursor: auto;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
-.profile__add-img {
-  margin-right: 5px;
-}
-
-.profile__add-btn:hover {
+.pr .profile__add-btn:hover {
   opacity: 0.8;
 }
 
