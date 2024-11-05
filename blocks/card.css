@@ -36,6 +36,10 @@
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 353px;
+  white-space: nowrap;
 }
 
 .profile__add-img {
