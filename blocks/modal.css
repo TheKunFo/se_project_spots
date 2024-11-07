@@ -39,6 +39,10 @@
   opacity: 40%;
 }
 
+.modal__close-btn:hover {
+  opacity: 1;
+}
+
 .modal__title {
   margin: 0 0 32px;
   font-weight: 500;
