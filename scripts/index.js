@@ -103,7 +103,7 @@ function getCardElement(data) {
   });
 
   cardDeleteBtn.addEventListener("click", () => {
-    cardDeleteBtn.closest(".card").remove();
+    cardElement.remove();
   });
 
   //preview
