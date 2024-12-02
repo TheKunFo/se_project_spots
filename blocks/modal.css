@@ -35,7 +35,6 @@
 .modal__content {
   max-width: 730px;
   box-sizing: border-box;
-
   background-color: #fff;
   border-radius: 10px;
   position: relative;
@@ -44,10 +43,6 @@
 
 .modal__content_type_preview {
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background-color: transparent;
 }
 
 .modal__image {
@@ -55,7 +50,6 @@
   max-width: 80vw;
   max-height: 80vh;
   object-fit: contain;
-  border-radius: 8px;
 }
 
 .modal__close-btn {
@@ -97,6 +91,7 @@
   font-size: 20px;
   line-height: 24px;
   width: fit-content;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
 }
 
 .modal__title {
@@ -142,6 +137,10 @@
 }
 
 @media screen and (max-width: 627px) {
+  .modal__image {
+    max-width: 282px;
+  }
+
   .modal {
     padding: 0 10px;
   }
@@ -161,8 +160,17 @@
   }
 
   .modal__close-btn {
-    top: 12px;
+    top: -40px;
     right: 12px;
+  }
+
+  .modal__close-btn_type_preview {
+    height: 40px;
+    width: 40px;
+    opacity: 1;
+    border: none;
+    color: #fff;
+    cursor: pointer;
   }
 
   .modal__label {
