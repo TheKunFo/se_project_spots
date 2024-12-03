@@ -43,6 +43,7 @@
 
 .modal__content_type_preview {
   padding: 0;
+  background-color: transparent;
 }
 
 .modal__image {
@@ -158,11 +159,11 @@
     line-height: 1;
     margin: 10px 0 34px;
   }
+
   .modal__close-btn {
     top: 12px;
     right: 12px;
   }
-
   .modal__close-btn_type_preview {
     height: 40px;
     width: 40px;
