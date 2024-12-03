@@ -158,9 +158,8 @@
     line-height: 1;
     margin: 10px 0 34px;
   }
-
   .modal__close-btn {
-    top: -40px;
+    top: 12px;
     right: 12px;
   }
 
