@@ -138,7 +138,7 @@
 
 @media screen and (max-width: 627px) {
   .modal__image {
-    max-width: 282px;
+    max-width: 288px;
   }
 
   .modal {
@@ -171,6 +171,8 @@
     border: none;
     color: #fff;
     cursor: pointer;
+    top: -40px;
+    right: 0;
   }
 
   .modal__label {
