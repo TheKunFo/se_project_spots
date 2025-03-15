@@ -119,6 +119,7 @@
   border: 1px #212121 solid;
   padding: 16px 12px;
 }
+
 .modal__input:hover {
   cursor: pointer;
 }
@@ -128,6 +129,11 @@
   opacity: 30%;
 }
 
+.modal__error {
+  /* display: block; */
+  color: red;
+  visibility: hidden;
+}
 .modal__submit-btn {
   border-radius: 8px;
   width: 156px;
