@@ -55,11 +55,12 @@
       </main>
       <footer class="footer">2024 © Spots</footer>
 
+      <!-- Edit Profile Modal -->
       <div class="modal" id="edit-modal">
         <div class="modal__container">
-          <button type="button" class="modal__close-btn"></button>
+          <button type="button" class="modal__close-btn">✕</button>
           <h2 class="modal__title">Edit Profile</h2>
-          <form name="edit-profile" class="modal__form">
+          <form name="edit-profile" class="modal__form" novalidate>
             <label for="profile-name-input" class="modal__label">
               Name
               <input
@@ -71,7 +72,7 @@
                 maxlength="40"
                 required
               />
-              <span class="modal__error">Please fill out this field.</span>
+              <span id="profile-name-input-error" class="modal__error"></span>
             </label>
             <label for="profile-description-input" class="modal__label">
               Description
@@ -84,25 +85,28 @@
                 maxlength="200"
                 required
               />
-              <span class="modal__error"
-                >Please lengthen this text to 2 characters or more (you are
-                currently using 1 character).</span
-              >
+              <span
+                id="profile-description-input-error"
+                class="modal__error"
+              ></span>
             </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
+            <button type="submit" class="modal__submit-btn" disabled>
+              Save
+            </button>
           </form>
         </div>
       </div>
-
       <div class="modal" id="add-card-modal">
         <div class="modal__container">
           <button
             aria-label="Close modal"
             type="button"
             class="modal__close-btn"
-          ></button>
+          >
+            ✕
+          </button>
           <h2 class="modal__title">New Post</h2>
-          <form class="modal__form" id="add-card-form">
+          <form class="modal__form" id="add-card-form" novalidate>
             <label class="modal__label" for="add-card-link-input">
               Image Link
               <input
@@ -110,11 +114,13 @@
                 type="url"
                 name="link"
                 class="modal__input"
-                placeholder="paste a link to the picture"
+                placeholder="Paste a link to the picture"
                 required
               />
-              <span class="modal__error">Please enter a URL</span>
+              <span id="add-card-link-input-error" class="modal__error"></span>
+              <!-- Error message for Image Link -->
             </label>
+
             <label for="add-card-name-input" class="modal__label">
               Caption
               <input
@@ -127,10 +133,22 @@
                 maxlength="30"
                 required
               />
-              <span class="modal__error">Please fill out this field</span>
+              <span id="add-card-name-input-error" class="modal__error"></span>
+              <!-- Error message for Caption -->
             </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
+
+            <button type="submit" class="modal__submit-btn" disabled>
+              Save
+            </button>
           </form>
+        </div>
+      </div>
+
+      <!-- Image Preview Modal -->
+      <div class="modal" id="image-modal">
+        <div class="modal__container">
+          <button type="button" class="modal__close-btn">✕</button>
+          <img src="" alt="" class="modal__image" />
         </div>
       </div>
     </div>
