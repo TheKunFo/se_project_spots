@@ -34,6 +34,11 @@
   box-sizing: border-box;
 }
 
+.modal__container_type_preview {
+  background-color: transparent;
+  padding: 0px;
+}
+
 .modal__content {
   max-width: 730px;
   box-sizing: border-box;
@@ -138,6 +143,10 @@
   color: red;
   visibility: hidden;
 }
+
+.modal__error_visible {
+  visibility: visible;
+}
 .modal__submit-btn {
   border-radius: 8px;
   width: 156px;
@@ -171,6 +180,7 @@
   .modal__container {
     padding: 12px;
   }
+
   .modal__title {
     font-size: 20px;
     margin: 10px 0 34px;
@@ -196,4 +206,3 @@
 .modal__input_type_error {
   border: 2px solid red;
 }
-
