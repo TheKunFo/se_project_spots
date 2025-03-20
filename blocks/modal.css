@@ -165,8 +165,8 @@
   }
 
   .modal__close-btn {
-    top: 12px;
-    right: 12px;
+    top: -35px;
+    right: -10px;
   }
 
   .modal__image {
@@ -187,8 +187,8 @@
   }
 
   .modal__close-btn {
-    top: 12px;
-    right: 12px;
+    top: -35px;
+    right: -10px;
   }
 
   .modal__image {
