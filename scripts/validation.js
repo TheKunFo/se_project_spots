@@ -1,44 +1,16 @@
-// -------------------
-// Validation Functions
-// -------------------
-// Hide error message
-const hideInputError = (formEl, inputEl) => {
+const hideInputError = (formEl, inputEl, config) => {
   const errorElement = formEl.querySelector(`#${inputEl.id}-error`);
-  errorElement.classList.remove("modal__error_visible"); // Hide error message
-  inputEl.classList.remove("modal__input_type_error"); // Remove error styling from input
+  errorElement.classList.remove(config.errorClass); // Hide error message
+  inputEl.classList.remove(config.inputErrorClass); // Remove error styling from input
 };
-
-// Modified checkInputValidity function for custom URL error message
-const checkInputValidity = (formEl, inputEl) => {
-  const errorMessage = inputEl.validationMessage;
-
-  // Custom error for invalid URL (Image Link)
-  if (inputEl.type === "url" && !inputEl.validity.valid) {
-    showInputError(formEl, inputEl, "Masukkan URL yang valid"); // Display custom error message
-  } else if (inputEl.id === "add-card-name-input") {
-    // Caption validation
-    if (inputEl.value.length < 2) {
-      showInputError(formEl, inputEl, "Caption harus lebih dari 2 karakter");
-    } else if (inputEl.value.length > 30) {
-      showInputError(formEl, inputEl, "Caption harus kurang dari 30 karakter");
-    }
-  } else if (!inputEl.validity.valid) {
-    // Default error message if validity fails
-    showInputError(formEl, inputEl, errorMessage);
-  } else {
-    hideInputError(formEl, inputEl);
-  }
-};
-
 // Modify your showInputError function to make sure the error message is properly displayed
-const showInputError = (formEl, inputEl, errorMsg) => {
+const showInputError = (formEl, inputEl, errorMsg, config) => {
   const errorElement = formEl.querySelector(`#${inputEl.id}-error`);
   errorElement.textContent = errorMsg; // Set the error message text
-  errorElement.classList.add("modal__error_visible"); // Make error message visible
-  inputEl.classList.add("modal__input_type_error"); // Add error styling to the input field
+  errorElement.classList.add(config.errorClass); // Make error message visible
+  inputEl.classList.add(config.inputErrorClass); // Add error styling to the input field
 };
 
-// Toggle the state of the submit button based on the overall validity of the inputs
 const toggleButtonState = (inputList, buttonElement) => {
   const isValid = inputList.every((input) => input.validity.valid);
   if (isValid) {
@@ -46,27 +18,6 @@ const toggleButtonState = (inputList, buttonElement) => {
   } else {
     buttonElement.setAttribute("disabled", true);
   }
-};
-
-// Set event listeners for each input in the form
-const setEventListener = (formEl) => {
-  const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
-  const buttonElement = formEl.querySelector(".modal__submit-btn");
-
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", function () {
-      checkInputValidity(formEl, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-
-// Enable validation for all forms
-const enableValidation = () => {
-  const formList = document.querySelectorAll(".modal__form");
-  formList.forEach((formEl) => {
-    setEventListener(formEl);
-  });
 };
 
 // Reset validation errors when a modal is opened
@@ -79,5 +30,52 @@ const resetValidation = (modal) => {
   formEl.querySelector(".modal__submit-btn").setAttribute("disabled", true);
 };
 
+// Mengubah fungsi enableValidation untuk menerima config dan meneruskannya ke setEventListener
+const enableValidation = (config) => {
+  const formList = document.querySelectorAll(config.formSelector);
+  formList.forEach((formEl) => {
+    setEventListener(formEl, config);
+  });
+};
+
+// Mengubah setEventListener untuk menerima config
+const setEventListener = (formEl, config) => {
+  const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
+  const buttonElement = formEl.querySelector(config.submitButtonSelector);
+
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formEl, inputElement, config);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+};
+
+const checkInputValidity = (formEl, inputEl, config) => {
+  const errorMessage = inputEl.validationMessage;
+
+  if (inputEl.type === "url" && !inputEl.validity.valid) {
+    showInputError(formEl, inputEl, "Please enter a URL", config);
+  } else if (inputEl.id === "add-card-name-input") {
+    if (inputEl.value.length < 2) {
+      showInputError(formEl, inputEl, "Please fill out this field", config);
+    } else if (inputEl.value.length > 30) {
+      showInputError(formEl, inputEl, "Please fill out this field", config);
+    }
+  } else if (!inputEl.validity.valid) {
+    showInputError(formEl, inputEl, errorMessage, config);
+  } else {
+    hideInputError(formEl, inputEl, config);
+  }
+};
 // Initialize validation listeners
-enableValidation();
+
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__submit-btn_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+enableValidation(settings);

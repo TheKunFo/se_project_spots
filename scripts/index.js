@@ -149,3 +149,45 @@ initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
   cardsList.prepend(cardElement);
 });
+
+function closeModalByOverlay(evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(evt.target);
+  }
+}
+
+const modals = document.querySelectorAll(".modal");
+modals.forEach((modal) => {
+  modal.addEventListener("click", closeModalByOverlay);
+});
+
+function closeModalByEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    if (openedModal) {
+      closeModal(openedModal);
+    }
+  }
+}
+
+function addEscapeListener() {
+  document.addEventListener("keydown", closeModalByEscape);
+}
+
+function removeEscapeListener() {
+  document.removeEventListener("keydown", closeModalByEscape);
+}
+
+// Tambahkan listener ketika modal terbuka dan hapus ketika modal ditutup
+cardModalButton.addEventListener("click", () => {
+  openModal(cardModal);
+  addEscapeListener();
+});
+editModalCloseBtn.addEventListener("click", () => {
+  closeModal(editModal);
+  removeEscapeListener();
+});
+cardModalCloseBtn.addEventListener("click", () => {
+  closeModal(cardModal);
+  removeEscapeListener();
+});
