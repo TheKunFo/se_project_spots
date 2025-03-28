@@ -68,9 +68,12 @@
               <input
                 id="profile-name-input"
                 type="text"
+                name="name"
                 class="modal__input"
+                required
                 placeholder="Type your name"
               />
+              <span id="profile-name-input-error" class="modal__error"></span>
             </label>
             <label for="profile-description-input" class="modal__label">
               Description
@@ -78,8 +81,14 @@
                 id="profile-description-input"
                 type="text"
                 class="modal__input"
+                required
+                minlength="2"
                 placeholder="Describe yourself"
               />
+              <span
+                id="profile-description-input-error"
+                class="modal__error"
+              ></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -102,6 +111,7 @@
                 type="url"
                 name="link"
                 class="modal__input"
+                required
                 placeholder="paste a link to the picture"
               />
               <!-- Elemen error untuk Image Link -->
@@ -114,6 +124,8 @@
                 type="text"
                 name="name"
                 class="modal__input"
+                required
+                minlength="2"
                 placeholder="Type your caption"
               />
               <!-- Elemen error untuk Caption -->

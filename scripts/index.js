@@ -124,6 +124,11 @@ function getCardElement(data) {
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
+  resetValidation(
+    editFormElement,
+    [editModalNameInput, editModalDescriptionInput],
+    settings
+  );
   openModal(editModal);
 });
 editModalCloseBtn.addEventListener("click", () => {
@@ -179,15 +184,15 @@ function removeEscapeListener() {
 }
 
 // Tambahkan listener ketika modal terbuka dan hapus ketika modal ditutup
-cardModalButton.addEventListener("click", () => {
-  openModal(cardModal);
-  addEscapeListener();
-});
-editModalCloseBtn.addEventListener("click", () => {
-  closeModal(editModal);
-  removeEscapeListener();
-});
-cardModalCloseBtn.addEventListener("click", () => {
-  closeModal(cardModal);
-  removeEscapeListener();
-});
+// cardModalButton.addEventListener("click", () => {
+//   openModal(cardModal);
+//   addEscapeListener();
+// });
+// editModalCloseBtn.addEventListener("click", () => {
+//   closeModal(editModal);
+//   removeEscapeListener();
+// });
+// cardModalCloseBtn.addEventListener("click", () => {
+//   closeModal(cardModal);
+//   removeEscapeListener();
+// });

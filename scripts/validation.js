@@ -21,11 +21,9 @@ const toggleButtonState = (inputList, buttonElement) => {
 };
 
 // Reset validation errors when a modal is opened
-const resetValidation = (modal) => {
-  const formEl = modal.querySelector(".modal__form");
-  const inputList = Array.from(formEl.querySelectorAll(".modal__input"));
+const resetValidation = (formEl, inputList, config) => {
   inputList.forEach((inputElement) => {
-    hideInputError(formEl, inputElement);
+    hideInputError(formEl, inputElement, config);
   });
   formEl.querySelector(".modal__submit-btn").setAttribute("disabled", true);
 };
@@ -54,15 +52,15 @@ const setEventListener = (formEl, config) => {
 const checkInputValidity = (formEl, inputEl, config) => {
   const errorMessage = inputEl.validationMessage;
 
-  if (inputEl.type === "url" && !inputEl.validity.valid) {
-    showInputError(formEl, inputEl, "Please enter a URL", config);
-  } else if (inputEl.id === "add-card-name-input") {
-    if (inputEl.value.length < 2) {
-      showInputError(formEl, inputEl, "Please fill out this field", config);
-    } else if (inputEl.value.length > 30) {
-      showInputError(formEl, inputEl, "Please fill out this field", config);
-    }
-  } else if (!inputEl.validity.valid) {
+  // if (inputEl.type === "url" && !inputEl.validity.valid) {
+  //   showInputError(formEl, inputEl, "Please enter a URL", config);
+  // } else if (inputEl.id === "add-card-name-input") {
+  //   if (inputEl.value.length < 2) {
+  //     showInputError(formEl, inputEl, "Please fill out this field", config);
+  //   } else if (inputEl.value.length > 30) {
+  //     showInputError(formEl, inputEl, "Please fill out this field", config);
+  //   }
+  if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, errorMessage, config);
   } else {
     hideInputError(formEl, inputEl, config);
