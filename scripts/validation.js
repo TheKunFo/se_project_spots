@@ -15,9 +15,9 @@ const toggleButtonState = (inputList, buttonElement, config) => {
   const isValid = inputList.every((input) => input.validity.valid);
   if (isValid) {
     buttonElement.removeAttribute("disabled");
-    buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.classList.remove(config.inactiveButtonClass); // use config
   } else {
-    disableButton(buttonElement, config); // use config
+    buttonElement.setAttribute("disabled", true);
   }
 };
 
@@ -41,7 +41,7 @@ const enableValidation = (config) => {
 const setEventListener = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonElement = formEl.querySelector(config.submitButtonSelector);
-  disableButton(buttonElement, config);
+
   toggleButtonState(inputList, buttonElement, config);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
