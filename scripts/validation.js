@@ -11,12 +11,13 @@ const showInputError = (formEl, inputEl, errorMsg, config) => {
   inputEl.classList.add(config.inputErrorClass); // Add error styling to the input field
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, config) => {
   const isValid = inputList.every((input) => input.validity.valid);
   if (isValid) {
     buttonElement.removeAttribute("disabled");
+    buttonElement.classList.remove(config.inactiveButtonClass);
   } else {
-    buttonElement.setAttribute("disabled", true);
+    disableButton(buttonElement, config); // use config
   }
 };
 
@@ -40,11 +41,12 @@ const enableValidation = (config) => {
 const setEventListener = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonElement = formEl.querySelector(config.submitButtonSelector);
-
+  disableButton(buttonElement, config);
+  toggleButtonState(inputList, buttonElement, config);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formEl, inputElement, config);
-      toggleButtonState(inputList, buttonElement);
+      toggleButtonState(inputList, buttonElement, config);
     });
   });
 };

@@ -66,9 +66,11 @@ const cardsList = document.querySelector(".cards__list");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  addEscapeListener(); // add
 }
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  removeEscapeListener(); // remove
 }
 
 function handleEditFormSubmit(evt) {
@@ -85,6 +87,7 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(cardElement);
   closeModal(cardModal);
   cardForm.reset();
+  disableButton(evt.submitter, settings);
 }
 
 function getCardElement(data) {

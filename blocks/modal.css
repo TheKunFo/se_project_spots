@@ -149,7 +149,7 @@
 }
 .modal__submit-btn {
   border-radius: 8px;
-  width: 156px;
+  width: 276px;
   padding: 18px 0;
   background: #212121;
   color: #fcf5e5;
@@ -160,7 +160,7 @@
 @media screen and (max-width: 320px) {
   .modal__container {
     padding: 20px;
-    width: 100%;
+    width: 300px;
     max-width: 320px; /* Matches card width on mobile */
   }
 
