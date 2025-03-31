@@ -155,7 +155,9 @@
   color: #fcf5e5;
   cursor: pointer;
 }
-
+.modal__submit-btn_disabled {
+  color: gray;
+}
 /* Mobile-specific styles */
 @media screen and (max-width: 320px) {
   .modal__container {

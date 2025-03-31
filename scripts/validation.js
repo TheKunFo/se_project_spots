@@ -12,13 +12,19 @@ const showInputError = (formEl, inputEl, errorMsg, config) => {
 };
 
 const toggleButtonState = (inputList, buttonElement, config) => {
+  // config should come here
   const isValid = inputList.every((input) => input.validity.valid);
   if (isValid) {
     buttonElement.removeAttribute("disabled");
     buttonElement.classList.remove(config.inactiveButtonClass); // use config
   } else {
-    buttonElement.setAttribute("disabled", true);
+    disableButton(buttonElement, config); // use disableButton here
   }
+};
+
+const disableButton = (buttonElement, config) => {
+  buttonElement.setAttribute("disabled", true);
+  buttonElement.classList.add(config.inactiveButtonClass); // use config
 };
 
 // Reset validation errors when a modal is opened
