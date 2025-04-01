@@ -32,7 +32,8 @@ const resetValidation = (formEl, inputList, config) => {
   inputList.forEach((inputElement) => {
     hideInputError(formEl, inputElement, config);
   });
-  formEl.querySelector(".modal__submit-btn").setAttribute("disabled", true);
+  const buttonElement = formEl.querySelector(config.submitButtonSelector);
+  disableButton(buttonElement, config);
 };
 
 // Mengubah fungsi enableValidation untuk menerima config dan meneruskannya ke setEventListener
