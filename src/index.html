@@ -7,18 +7,21 @@
     <meta name="description" content="description" />
     <meta name="keywords" content="HTML , CSS , FIGMA" />
     <meta name="author" content="Andrian Apriadi" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spot Logo" class="header__logo" />
+        <img
+          src="<%= require('./images/logo.svg') %>"
+          alt="Spot Logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section" id="profile_form">
           <img
-            src="./images/avatar.jpg"
+            src="<%= require('./images/avatar.jpg') %>"
             alt="Bessie Coleman"
             class="profile__avatar"
           />
@@ -30,13 +33,16 @@
               in modern world...
             </p>
             <button type="button" class="profile__edit-btn">
-              <img src="./images/pencil.svg" alt="pencil icon" />Edit Profile
+              <img
+                src="<%= require('./images/pencil.svg') %>"
+                alt="pencil icon"
+              />Edit Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
             <img
               class="profile__add-img"
-              src="./images/plus.svg"
+              src="<%= require('./images/plus.svg') %>"
               alt="Plus icon"
             />New Post
           </button>
@@ -152,7 +158,5 @@
         <p class="modal__caption"></p>
       </div>
     </div>
-    <script defer src="./scripts/validation.js"></script>
-    <script defer src="./scripts/index.js"></script>
   </body>
 </html>
