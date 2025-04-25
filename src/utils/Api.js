@@ -25,6 +25,10 @@ class Api {
         throw err;
       });
   }
+  _checkResponse(res) {
+    // here is the code of the checking
+}
+
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
