@@ -5,7 +5,6 @@ import {
   settings,
   resetValidation,
   disableButton,
-  
 } from "./scripts/validation.js";
 
 // Profile elements
@@ -22,6 +21,14 @@ const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
+
+const deleteConfirmModal = document.querySelector("#confirm-delete");
+console.log(deleteConfirmModal);
+const deleteConfirmCloseBtn =
+  deleteConfirmModal.querySelector(".modal__close-btn");
+  
+  const CancelConfirmCloseBtn =
+  deleteConfirmModal.querySelector(".modal__cancel-button");
 
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = cardModal.querySelector(".modal__form");
@@ -74,6 +81,7 @@ function closeModal(modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
+  // change the button.textContent to say "Saving..."
   api
     .editUserInfo({
       name: editModalNameInput.value,
@@ -83,6 +91,7 @@ function handleEditFormSubmit(evt) {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
+      // change the button to say whatever it had before ("Save" or something)
     })
     .catch(console.error);
 }
@@ -102,6 +111,7 @@ function handleAddCardSubmit(evt) {
     .catch(console.error);
 }
 
+let deleteListener = null;
 function getCardElement(data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
@@ -116,6 +126,9 @@ function getCardElement(data) {
   cardImgEl.alt = data.name;
   cardNameEl.textContent = data.name;
 
+  if (data.isLiked) {
+    cardLikeBtn.classList.add("card__like-btn_liked");
+  }
   cardLikeBtn.addEventListener("click", () => {
     if (cardLikeBtn.classList.contains("card__like-btn_liked")) {
       api.removeLike(data._id).catch(console.error);
@@ -126,12 +139,19 @@ function getCardElement(data) {
   });
 
   cardDeleteBtn.addEventListener("click", () => {
-    api
-      .removeCard(data._id)
-      .then(() => {
-        cardElement.remove();
-      })
-      .catch(console.error);
+    const modal = document.querySelector("#confirm-delete");
+    modal.classList.add("modal_opened");
+    const button = modal.querySelector(".modal__confirm-button");
+    deleteListener = () => {
+      api
+        .removeCard(data._id)
+        .then(() => {
+          cardElement.remove();
+        })
+        .catch(console.error);
+      closeModal(modal);
+    };
+    button.addEventListener("click", deleteListener);
   });
 
   // Preview
@@ -159,7 +179,17 @@ profileEditButton.addEventListener("click", () => {
 editModalCloseBtn.addEventListener("click", () => {
   closeModal(editModal);
 });
-
+console.log(CancelConfirmCloseBtn)
+CancelConfirmCloseBtn.addEventListener("click", () => {
+  console.log ("dasdsad")
+  closeModal(deleteConfirmModal);
+});
+deleteConfirmCloseBtn.addEventListener("click", () => {
+  console.log("clicked close button");
+  closeModal(deleteConfirmModal);
+  const button = deleteConfirmModal.querySelector(".modal__confirm-button");
+  button.removeEventListener("click", deleteListener);
+});
 cardModalButton.addEventListener("click", () => {
   openModal(cardModal);
 });

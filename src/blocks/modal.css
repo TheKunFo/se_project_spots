@@ -158,6 +158,12 @@
 .modal__submit-btn_disabled {
   opacity: 0.5;
 }
+
+.modal__confirm-button{
+  background-color: #FF6565;
+  color: #212121;
+}
+
 /* Mobile-specific styles */
 @media screen and (max-width: 320px) {
   .modal__container {
