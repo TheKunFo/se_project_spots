@@ -19,6 +19,10 @@
   visibility: hidden;
 }
 
+.profile__avatar-container:hover .profile__avatar-btn {
+  visibility: visible;
+}
+
 .profile__avatar-btn::after{
   content: "Edit Avatar";
 }
