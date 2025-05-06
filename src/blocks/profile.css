@@ -113,6 +113,10 @@
     padding-top: 0;
   }
 
+  .profile__avatar-btn{
+    visibility: visible;
+  }
+
   .profile__name {
     min-width: 288px;
     font-size: 20px;
