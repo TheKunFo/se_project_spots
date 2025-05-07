@@ -14,32 +14,39 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({ name, about }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+      .then((res) => this._checkResponse(res))
       .catch((err) => {
         console.error("Error editing user info:", err);
         throw err;
       });
   }
-  _checkResponse(res) {
-    // here is the code of the checking
-}
 
+  editAvatar({ avatar }) {
+    // debugger;
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({ avatar }),
+    })
+      .then((res) => this._checkResponse(res))
+      .catch((err) => {
+        console.error("Error editing user info:", err);
+        throw err;
+      });
+  }
+
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+      .then((res) => this._checkResponse(res))
       .catch((err) => {
         console.error("Error fetching user info:", err);
         throw err;
@@ -50,12 +57,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+      .then((res) => this._checkResponse(res))
       .catch((err) => {
         console.error("Error fetching initial cards:", err);
         throw err;
@@ -68,12 +70,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({ name, link }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+      .then((res) => this._checkResponse(res))
       .catch((err) => {
         console.error("Error adding card:", err);
         throw err;
@@ -85,12 +82,7 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+      .then((res) => this._checkResponse(res))
       .catch((err) => {
         console.error("Error deleting card:", err);
         throw err;
@@ -119,12 +111,7 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
+      .then((res) => this._checkResponse(res))
       .catch((err) => {
         console.error("Error removing like:", err);
         throw err;

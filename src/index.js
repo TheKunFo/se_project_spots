@@ -21,20 +21,23 @@ const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
+const editSubmitButton = editModal.querySelector(".modal__submit-btn");
 
 const deleteConfirmModal = document.querySelector("#confirm-delete");
 console.log(deleteConfirmModal);
 const deleteConfirmCloseBtn =
   deleteConfirmModal.querySelector(".modal__close-btn");
-  
-  const CancelConfirmCloseBtn =
-  deleteConfirmModal.querySelector(".modal__cancel-button");
+
+const CancelConfirmCloseBtn = deleteConfirmModal.querySelector(
+  ".modal__cancel-button"
+);
 
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = cardModal.querySelector(".modal__form");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
+const cardSubmitButton = cardModal.querySelector(".modal__submit-btn");
 
 // Preview
 const previewModal = document.querySelector("#preview-modal");
@@ -45,6 +48,14 @@ const previewModalCloseButton = previewModal.querySelector(".modal__close-btn");
 // Card related elements
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+
+// Change avatar functionality
+const changeAvatarButton = document.querySelector(".profile__avatar-btn");
+const changeAvatarModal = document.querySelector("#edit-avatar-modal");
+const changeAvatarForm = changeAvatarModal.querySelector("#edit-avatar-form");
+const avatarSubmitButton =
+  changeAvatarModal.querySelector(".modal__submit-btn");
+const changeAvatarClose = changeAvatarModal.querySelector(".modal__close-btn");
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -81,7 +92,7 @@ function closeModal(modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  // change the button.textContent to say "Saving..."
+  editSubmitButton.textContent = "Saving...";
   api
     .editUserInfo({
       name: editModalNameInput.value,
@@ -91,7 +102,7 @@ function handleEditFormSubmit(evt) {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
-      // change the button to say whatever it had before ("Save" or something)
+      editSubmitButton.textContent = "Save";
     })
     .catch(console.error);
 }
@@ -99,6 +110,7 @@ function handleEditFormSubmit(evt) {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
+  cardSubmitButton.textContent = "Saving...";
   api
     .addNewCard(inputValues)
     .then((card) => {
@@ -107,9 +119,28 @@ function handleAddCardSubmit(evt) {
       closeModal(cardModal);
       cardForm.reset();
       disableButton(evt.submitter, settings);
+      cardSubmitButton.textContent = "Save";
     })
     .catch(console.error);
 }
+
+changeAvatarForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+  avatarSubmitButton.textContent = "Saving...";
+  // output as an object
+  const data = Object.fromEntries(formData);
+  api
+    .editAvatar(data)
+    .then(() => {
+      const avatar = document.querySelector(".profile__avatar");
+      avatar.src = data.avatar;
+      closeModal(changeAvatarModal);
+      avatarSubmitButton.textContent = "Save";
+    })
+    .catch(console.error);
+});
 
 let deleteListener = null;
 function getCardElement(data) {
@@ -179,9 +210,9 @@ profileEditButton.addEventListener("click", () => {
 editModalCloseBtn.addEventListener("click", () => {
   closeModal(editModal);
 });
-console.log(CancelConfirmCloseBtn)
+console.log(CancelConfirmCloseBtn);
 CancelConfirmCloseBtn.addEventListener("click", () => {
-  console.log ("dasdsad")
+  console.log("dasdsad");
   closeModal(deleteConfirmModal);
 });
 deleteConfirmCloseBtn.addEventListener("click", () => {
@@ -200,6 +231,10 @@ cardModalCloseBtn.addEventListener("click", () => {
 
 previewModalCloseButton.addEventListener("click", () => {
   closeModal(previewModal);
+});
+
+changeAvatarClose.addEventListener("click", () => {
+  closeModal(changeAvatarModal);
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
@@ -232,5 +267,10 @@ function addEscapeListener() {
 function removeEscapeListener() {
   document.removeEventListener("keydown", closeModalByEscape);
 }
+
+changeAvatarButton.addEventListener("click", () => {
+  openModal(changeAvatarModal);
+  disableButton(avatarSubmitButton, settings);
+});
 
 enableValidation(settings);
