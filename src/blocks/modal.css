@@ -40,6 +40,8 @@
 }
 
 .modal__content {
+  align-items: flex-end;
+  justify-content: center;
   max-width: 730px;
   box-sizing: border-box;
   background-color: #fff;
@@ -160,7 +162,20 @@
 }
 
 .modal__confirm-button {
+  border-radius: 8px;
+  width: 156px;
+  height: 52px;
+  padding: 18px 0;
   background-color: #ff6565;
+  color: #212121;
+}
+
+.modal__cancel-button {
+  border-radius: 8px;
+  width: 156px;
+  height: 52px;
+  padding: 18px 0;
+  background-color: #f2f2f2;
   color: #212121;
 }
 
