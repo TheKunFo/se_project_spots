@@ -40,7 +40,6 @@
 }
 
 .modal__content {
-  align-items: flex-end;
   justify-content: center;
   max-width: 730px;
   box-sizing: border-box;
@@ -161,7 +160,14 @@
   opacity: 0.5;
 }
 
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
 .modal__confirm-button {
+  right: auto;
   border-radius: 8px;
   width: 156px;
   height: 52px;
