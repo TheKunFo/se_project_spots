@@ -22,13 +22,13 @@ const toggleButtonState = (inputList, buttonElement, config) => {
   }
 };
 
-const disableButton = (buttonElement, config) => {
+export const disableButton = (buttonElement, config) => {
   buttonElement.setAttribute("disabled", true);
   buttonElement.classList.add(config.inactiveButtonClass); // use config
 };
 
 // Reset validation errors when a modal is opened
-const resetValidation = (formEl, inputList, config) => {
+export const resetValidation = (formEl, inputList, config) => {
   inputList.forEach((inputElement) => {
     hideInputError(formEl, inputElement, config);
   });
@@ -37,7 +37,7 @@ const resetValidation = (formEl, inputList, config) => {
 };
 
 // Mengubah fungsi enableValidation untuk menerima config dan meneruskannya ke setEventListener
-const enableValidation = (config) => {
+export const enableValidation = (config) => {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formEl) => {
     setEventListener(formEl, config);
@@ -60,15 +60,6 @@ const setEventListener = (formEl, config) => {
 
 const checkInputValidity = (formEl, inputEl, config) => {
   const errorMessage = inputEl.validationMessage;
-
-  // if (inputEl.type === "url" && !inputEl.validity.valid) {
-  //   showInputError(formEl, inputEl, "Please enter a URL", config);
-  // } else if (inputEl.id === "add-card-name-input") {
-  //   if (inputEl.value.length < 2) {
-  //     showInputError(formEl, inputEl, "Please fill out this field", config);
-  //   } else if (inputEl.value.length > 30) {
-  //     showInputError(formEl, inputEl, "Please fill out this field", config);
-  //   }
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, errorMessage, config);
   } else {
@@ -77,7 +68,7 @@ const checkInputValidity = (formEl, inputEl, config) => {
 };
 // Initialize validation listeners
 
-const settings = {
+export const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
@@ -85,4 +76,4 @@ const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-enableValidation(settings);
+// enableValidation(settings);

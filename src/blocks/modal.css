@@ -40,6 +40,7 @@
 }
 
 .modal__content {
+  justify-content: center;
   max-width: 730px;
   box-sizing: border-box;
   background-color: #fff;
@@ -158,6 +159,32 @@
 .modal__submit-btn_disabled {
   opacity: 0.5;
 }
+
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.modal__confirm-button {
+  right: auto;
+  border-radius: 8px;
+  width: 156px;
+  height: 52px;
+  padding: 18px 0;
+  background-color: #ff6565;
+  color: #212121;
+}
+
+.modal__cancel-button {
+  border-radius: 8px;
+  width: 156px;
+  height: 52px;
+  padding: 18px 0;
+  background-color: #f2f2f2;
+  color: #212121;
+}
+
 /* Mobile-specific styles */
 @media screen and (max-width: 320px) {
   .modal__container {
