@@ -95,7 +95,7 @@ class Api {
       method: "PUT",
       headers: this._headers,
     })
-      .then((res) => {
+      .then((res) => .this._checkResponse(res)) {
         if (res.ok) {
           return res.json();
         }
