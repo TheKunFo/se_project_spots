@@ -96,11 +96,6 @@ class Api {
       headers: this._headers,
     })
       .then((res) => .this._checkResponse(res)) {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
       .catch((err) => {
         console.error("Error adding like:", err);
         throw err;
