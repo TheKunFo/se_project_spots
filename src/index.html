@@ -27,6 +27,7 @@
                 alt="Pencil icon"
                 class="profile__pencil-icon"
               />
+              Edit Profile Ava
             </button>
             <img
               src="<%= require('./images/avatar.png') %>"
@@ -181,16 +182,26 @@
         ></button>
       </div>
     </div>
+
+    <div class="modal" id="confirm-response">
+      <div class="modal__content">
+        <h2 id="confirm-title"></h2>
+        <span id="confirm-message"></span>
+      </div>
+    </div>
+
     <div class="modal" id="edit-avatar-modal">
-      <div class="modal__content_avatar">
-        <h2 class="modal__title-avatar">Edit profile avatar</h2>
+      <div class="modal__container">
+        <h2 class="modal__title">Edit Profile Avatar</h2>
         <form class="modal__form" id="edit-avatar-form">
-          <label for="Profile picture" class="modal__label">
+          <label for="" class="modal__label">
+            Profile Picture
             <input
               id="avatar-input"
               class="modal__input"
               placeholder="Paste the link to an image"
               name="avatar"
+              type="url"
             />
             <span id="avatar-input-error" class="modal__error"></span>
           </label>

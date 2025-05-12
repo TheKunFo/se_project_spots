@@ -42,20 +42,9 @@
 .modal__content {
   justify-content: center;
   max-width: 730px;
-  max-height: 298px;
   box-sizing: border-box;
   background-color: #fff;
-  border-radius: 8px;
-  position: relative;
-  padding: 36px 50px 32px;
-}
-
-.modal__content_avatar {
-  width: 730px;
-  height: 298px;
-  box-sizing: border-box;
-  background-color: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
   position: relative;
   padding: 36px 50px 32px;
 }
@@ -122,13 +111,6 @@
   font-size: 32px;
   line-height: 1;
   color: #212121;
-}
-
-.modal__title-avatar {
-  width: 285px;
-  height: 32px;
-  font-weight: 500;
-  font-size: 32px;
 }
 
 .modal__label {
