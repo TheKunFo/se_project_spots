@@ -185,7 +185,9 @@ function getCardElement(data) {
 
   cardLikeBtn.addEventListener("click", () => {
     const toggleLike = cardLikeBtn.classList.toggle("card__like-btn_liked");
-    (toggleLike ? api.addLike : api.removeLike)(data._id).catch(console.error);
+    toggleLike
+      ? api.addLike(data._id)
+      : api.removeLike(data._id).catch(console.error);
   });
 
   cardDeleteBtn.addEventListener("click", () => {
