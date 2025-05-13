@@ -95,7 +95,7 @@ class Api {
       method: "PUT",
       headers: this._headers,
     })
-      .then((res) => .this._checkResponse(res)) {
+      .then((res) => this._checkResponse(res))
       .catch((err) => {
         console.error("Error adding like:", err);
         throw err;
