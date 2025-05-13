@@ -56,6 +56,7 @@ const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
 // Change avatar
+const profileAvatar = document.querySelector(".profile__avatar");
 const changeAvatarButton = document.querySelector(".profile__avatar-btn");
 const changeAvatarModal = document.querySelector("#edit-avatar-modal");
 const changeAvatarForm = changeAvatarModal.querySelector("#edit-avatar-form");
@@ -76,7 +77,6 @@ api
   .then(([cards, userInfo]) => {
     profileName.textContent = userInfo.name;
     profileDescription.textContent = userInfo.about;
-    const profileAvatar = document.querySelector(".profile__avatar");
     profileAvatar.src = userInfo.avatar;
     cards.forEach((item) => {
       const cardEl = getCardElement(item);
@@ -184,30 +184,28 @@ function getCardElement(data) {
   }
 
   cardLikeBtn.addEventListener("click", () => {
-    const toggleLike = cardLikeBtn.classList.toggle("card__like-btn_liked");
+    const toggleLike = cardLikeBtn.classList.contains("card__like-btn_liked");
     toggleLike
-      ? api.addLike(data._id)
-      : api.removeLike(data._id).catch(console.error);
+      ? api
+          .removeLike(data._id)
+          .then(() => {
+            cardLikeBtn.classList.remove("card__like-btn_liked");
+          })
+          .catch(console.error)
+      : api
+          .addLike(data._id)
+          .then(() => {
+            cardLikeBtn.classList.add("card__like-btn_liked");
+          })
+          .catch(console.error);
   });
 
   cardDeleteBtn.addEventListener("click", () => {
     openModal(deleteConfirmModal);
 
-    const confirmHandler = () => {
-      api
-        .removeCard(data._id)
-        .then(() => {
-          cardElement.remove();
-          closeModal(deleteConfirmModal);
-          showConfirm("Delete Post", "You have successfully deleted a post");
-        })
-        .catch(console.error)
-        .finally(() => {
-          confirmDeleteBtn.removeEventListener("click", confirmHandler);
-        });
-    };
-
-    confirmDeleteBtn.addEventListener("click", confirmHandler);
+    console.log(data._id, cardElement);
+    currentCardId = data._id;
+    currentCardElement = cardElement;
   });
 
   cardImgEl.addEventListener("click", () => {
@@ -219,6 +217,21 @@ function getCardElement(data) {
 
   return cardElement;
 }
+
+let currentCardId = null;
+let currentCardElement = null;
+const confirmDeleteHandler = () => {
+  console.log(currentCardId, currentCardElement);
+  api
+    .removeCard(currentCardId)
+    .then(() => {
+      currentCardElement.remove();
+      closeModal(deleteConfirmModal);
+      showConfirm("Delete Post", "You have successfully deleted a post");
+    })
+    .catch(console.error);
+};
+confirmDeleteBtn.addEventListener("click", confirmDeleteHandler);
 
 // Helpers
 function showConfirm(title, message) {
